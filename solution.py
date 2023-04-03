@@ -12,6 +12,9 @@ def solution(p: float, x: np.array) -> tuple:
     loc = x.mean()
     n = len(x)
     df = n - 1
-    scale = np.sqrt(np.var(x)) / np.sqrt(n)
-    return np.sqrt((n-1) * scale*scale / chi2.ppf(1 - alpha/2, df) / 19) / np.sqrt(2), \
-           np.sqrt((n-1) * scale*scale / chi2.ppf(alpha/2, df) / 19) / np.sqrt(2)
+    scale = np.sqrt(np.var(x))
+    
+    displ_coeff = 2.33
+
+    return np.sqrt((n-1) * scale*scale / chi2.ppf(1 - alpha/2, df) / 19 * displ_coeff), \
+           np.sqrt((n-1) * scale*scale / chi2.ppf(alpha/2, df) / 19 * displ_coeff)
